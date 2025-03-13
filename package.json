@@ -1,0 +1,24 @@
+{
+  "name": "intraquery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdagz28/IntraQuery.git"
+  },
+  "author": "jdagz28",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdagz28/IntraQuery/issues"
+  },
+  "homepage": "https://github.com/jdagz28/IntraQuery#readme",
+  "dependencies": {
+    "axios": "^1.8.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}
