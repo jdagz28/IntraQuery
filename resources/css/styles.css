@@ -1,0 +1,13 @@
+html {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+   background-color:  #393e46; 
+}
+
+.login-button {
+    background-color: #00BDC7;
+    border-color: #00BDC7;
+    color: #fff;
+}
