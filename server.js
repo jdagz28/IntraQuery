@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const port = process.env.PORT || 1919;
+const port = process.env.PORT;
 
 
 // Serve static files
@@ -22,7 +22,14 @@ app.get('/auth/42', (req, res) => {
   res.redirect(`${autorizeUrl}?${params.toString()}`);
 });
 
+// 42 sends user back to this route
+app.get('/auth/42/callback', (req, res) => {
+    const code = req.query.code;
+    // code to get the access token
+    res.send(`Got the code: ${code}`);
+});
+
 // Listen on port
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
-  });
+});
