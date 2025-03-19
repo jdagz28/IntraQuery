@@ -13,7 +13,12 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    cookie: {
+        sameSite: 'lax',  
+        secure: false 
+      }
 }));
+
 // Serve static files
 app.use(express.static(path.join(__dirname)));
 
@@ -58,19 +63,29 @@ app.get('/auth/42/callback', async (req, res) => {
         });
 
         // store user data in session
-        // req.session.user = userResponse.data;
-        // res.redirect('/index.html');
+        req.session.user = userResponse.data;
+        res.redirect('/index.html');
         // Instead of storing user data in session and redirecting,
         
         // print out the user data in a formatted way for testing.
-        res.send(`
-            <h1>User Data</h1>
-            <pre>${JSON.stringify(userResponse.data, null, 2)}</pre>
-        `);
+        // res.send(`
+        //     <h1>User Data</h1>
+        //     <pre>${JSON.stringify(userResponse.data, null, 2)}</pre>
+        // `);
     } catch (err) {
         console.error(err);
         res.status(500).send('Error: Unable to get or fetch user data');
     }
+});
+
+// Route to get user data
+app.get('/user', (req, res) => {
+    if (!req.session.user) {
+        res.status(401).send('Error: Not Logged In');
+        return ;
+    }
+
+    res.send(req.session.user);
 });
 
 // Listen on port
